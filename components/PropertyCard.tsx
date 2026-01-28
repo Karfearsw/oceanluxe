@@ -6,9 +6,10 @@ import { MapPin, ArrowRight } from 'lucide-react';
 interface PropertyCardProps {
   property: Property;
   onInquire: (property: Property) => void;
+  fallbackSrc?: string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire, fallbackSrc }) => {
   return (
     <div className="group relative bg-brand-darkgray border border-gray-800 overflow-hidden hover:border-brand-gold transition-all duration-300">
       <div className="h-64 w-full overflow-hidden relative">
@@ -19,6 +20,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire }) => {
           prompt={property.imagePrompt} 
           alt={property.title} 
           className="w-full h-full group-hover:scale-105 transition-transform duration-700"
+          fallbackSrc={fallbackSrc}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60"></div>
       </div>

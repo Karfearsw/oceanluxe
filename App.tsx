@@ -52,6 +52,8 @@ const FEATURED_PROPERTIES: Property[] = [
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'All' | 'Residential' | 'Commercial' | 'Investment'>('All');
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const filteredProperties = activeTab === 'All' 
     ? FEATURED_PROPERTIES 
@@ -144,7 +146,7 @@ function App() {
             <button className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
               Explore Listings
             </button>
-            <button className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
+            <button onClick={() => setContactOpen(true)} className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
               Our Services
             </button>
           </div>
@@ -232,7 +234,8 @@ function App() {
               <PropertyCard 
                 key={property.id} 
                 property={property} 
-                onInquire={(p) => console.log('Inquire', p.title)} 
+                onInquire={(p) => setSelectedProperty(p)} 
+                fallbackSrc={new URL('./download (7).png', import.meta.url).href}
               />
             ))}
           </div>
@@ -367,6 +370,78 @@ function App() {
 
       {/* AI Concierge Component */}
       <Concierge />
+      
+      {selectedProperty && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
+          <div className="bg-black border border-white/10 max-w-3xl w-full mx-4 rounded-sm overflow-hidden">
+            <div className="h-72 w-full relative">
+              <AiImage
+                prompt={selectedProperty.imagePrompt}
+                alt={selectedProperty.title}
+                className="w-full h-full object-cover"
+                fallbackSrc={new URL('./download (7).png', import.meta.url).href}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            </div>
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-2xl font-serif text-white">{selectedProperty.title}</h3>
+                  <p className="text-gray-400">{selectedProperty.location}</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-2xl text-brand-gold">{selectedProperty.price}</span>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-6">{selectedProperty.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500 uppercase tracking-wider">{selectedProperty.specs}</span>
+                <div className="flex gap-3">
+                  <button onClick={() => setContactOpen(true)} className="bg-brand-gold text-black px-4 py-2 rounded-sm font-bold uppercase">
+                    Inquire
+                  </button>
+                  <button onClick={() => setSelectedProperty(null)} className="border border-white text-white px-4 py-2 rounded-sm">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {contactOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
+          <div className="bg-black border border-white/10 max-w-lg w-full mx-4 rounded-sm p-6">
+            <h3 className="text-2xl font-serif text-white mb-4">Start a Conversation</h3>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target as HTMLFormElement;
+                const data = new FormData(form);
+                const payload = Object.fromEntries(data.entries());
+                console.log('Inquiry', payload);
+                form.reset();
+                setContactOpen(false);
+              }}
+              className="space-y-4"
+            >
+              <input name="name" required placeholder="Full Name" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <input name="email" required type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <input name="phone" placeholder="Phone" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <textarea name="message" required placeholder="Tell us what you're looking for" rows={4} className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <div className="flex justify-end gap-3">
+                <button type="button" onClick={() => setContactOpen(false)} className="border border-white text-white px-4 py-2 rounded-sm">
+                  Cancel
+                </button>
+                <button type="submit" className="bg-brand-gold text-black px-4 py-2 rounded-sm font-bold uppercase">
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
       
     </div>
   );
