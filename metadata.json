@@ -1,0 +1,7 @@
+{
+  "name": "Ocean Luxe Estates",
+  "description": "Premium real estate platform powered by Oretha AI and Stackk Cloud, featuring dynamic AI-generated imagery and intelligent property concierge.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
