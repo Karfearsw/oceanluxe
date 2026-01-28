@@ -122,13 +122,12 @@ function App() {
       {/* Hero Section */}
       <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-          <AiImage 
-            prompt="futuristic luxury glass mansion on a cliff overlooking the ocean at night, dramatic lighting, gold ambient lights, architectural masterpiece, 8k, photorealistic" 
-            alt="Hero Background" 
-            className="w-full h-full object-cover"
-            fallbackSrc="/logo.png"
+          <img 
+            src="/logo.png"
+            alt="Hero Background"
+            className="w-full h-full object-contain"
           />
-          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl px-4">
