@@ -21,6 +21,11 @@ const AiImage: React.FC<AiImageProps> = ({ prompt, alt, className = "", fallback
     const fetchImage = async () => {
       try {
         setLoading(true);
+        const key = (process.env.API_KEY as string) || '';
+        if (!key || key === 'PLACEHOLDER_API_KEY') {
+          setError(true);
+          return;
+        }
         // Add specific style descriptors to ensure "Luxury" aesthetic matches the brand
         // Updated to emphasize GOLD accents instead of red
         const enhancedPrompt = `${prompt}, photorealistic, 8k, architectural photography, luxury real estate, dramatic lighting, gold accents, warm tones, high contrast, elegant`;
