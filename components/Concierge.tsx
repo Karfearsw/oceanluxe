@@ -21,8 +21,14 @@ const Concierge: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!chatSession.current) {
-      chatSession.current = createConciergeChat();
+    // Only init chat if key is present to prevent crashes
+    const key = (process.env.API_KEY as string) || '';
+    if (!chatSession.current && key && key !== 'PLACEHOLDER_API_KEY') {
+      try {
+         chatSession.current = createConciergeChat();
+      } catch (e) {
+         console.warn("AI Chat init failed", e);
+      }
     }
     
     // Load memory from local storage if available
@@ -59,6 +65,19 @@ const Concierge: React.FC = () => {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setIsTyping(true);
+
+    if (!chatSession.current) {
+        // Fallback response if AI is offline
+        setMessages(prev => [...prev, {
+            id: Date.now().toString(),
+            role: 'model',
+            text: "I am currently in offline mode as my connection to the secure server is establishing. Please contact our team directly at +1 (800) LUXE-EST.",
+            timestamp: new Date()
+        }]);
+        setInput('');
+        setIsTyping(false);
+        return;
+    }
 
     try {
       const result = await chatSession.current.sendMessage({ message: userMsg.text });
