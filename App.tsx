@@ -70,7 +70,7 @@ function App() {
             <div className="flex items-center space-x-3">
                <div className="h-14 w-14 overflow-hidden rounded-full border border-brand-gold/20">
                  <img
-                   src={new URL('./download (7).png', import.meta.url).href}
+                   src="/logo.png"
                    alt="Logo"
                    className="h-full w-full object-cover"
                  />
@@ -126,7 +126,7 @@ function App() {
             prompt="futuristic luxury glass mansion on a cliff overlooking the ocean at night, dramatic lighting, gold ambient lights, architectural masterpiece, 8k, photorealistic" 
             alt="Hero Background" 
             className="w-full h-full object-cover"
-            fallbackSrc={new URL('./download (7).png', import.meta.url).href}
+            fallbackSrc="/logo.png"
           />
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
@@ -193,7 +193,7 @@ function App() {
                 prompt="modern sleek skyscraper architecture detail black and gold, upward angle, cinematic, luxury" 
                 alt="Architecture" 
                 className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                fallbackSrc={new URL('./download (7).png', import.meta.url).href}
+                fallbackSrc="/logo.png"
               />
             </div>
           </div>

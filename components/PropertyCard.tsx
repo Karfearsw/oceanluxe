@@ -9,7 +9,7 @@ interface PropertyCardProps {
   fallbackSrc?: string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire, fallbackSrc }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire, fallbackSrc = '/logo.png' }) => {
   return (
     <div className="group relative bg-brand-darkgray border border-gray-800 overflow-hidden hover:border-brand-gold transition-all duration-300">
       <div className="h-64 w-full overflow-hidden relative">
