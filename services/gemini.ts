@@ -1,6 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const getAI = () => {
+  const key = process.env.API_KEY || '';
+  if (!key || key === 'PLACEHOLDER_API_KEY') return null;
+  return new GoogleGenAI({ apiKey: key });
+};
 
 // Cache for generated images to prevent refetching on re-renders
 const imageCache: Record<string, string> = {};
@@ -11,6 +14,8 @@ export const generateImage = async (prompt: string): Promise<string | null> => {
   }
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
       contents: {
@@ -40,6 +45,8 @@ export const generateImage = async (prompt: string): Promise<string | null> => {
 };
 
 export const createConciergeChat = () => {
+  const ai = getAI();
+  if (!ai) return null as any;
   return ai.chats.create({
     model: 'gemini-2.5-flash-latest', // Fast text model
     config: {
