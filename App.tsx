@@ -144,7 +144,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+      <section id="home" className="relative min-h-screen w-full flex items-center justify-center pt-28 md:pt-24 pb-16">
         <div className="absolute inset-0 z-0">
           <img 
             src="/logo.png"
@@ -158,7 +158,7 @@ function App() {
           <p className="text-brand-gold uppercase tracking-[0.3em] text-sm font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             Coastal Luxury • Investment-Grade Real Estate
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 text-white leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-serif font-bold mb-6 text-white leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
             Coastal Luxury <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-gold/50 to-white">& Investment-Grade</span> Real Estate
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
