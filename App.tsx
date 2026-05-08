@@ -151,15 +151,16 @@ function App() {
             alt="Hero Background"
             className="w-full h-full object-contain"
           />
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-black/55"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl px-4">
-          <p className="text-brand-gold uppercase tracking-[0.3em] text-sm font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <p className="text-brand-gold uppercase tracking-[0.2em] text-xs md:text-sm font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             Coastal Luxury • Investment-Grade Real Estate
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-serif font-bold mb-6 text-white leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
-            Coastal Luxury <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-gold/50 to-white">& Investment-Grade</span> Real Estate
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white leading-[1.1] max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
+            <span className="block">Coastal Luxury</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-gold/50 to-white">&amp; Investment-Grade Real Estate</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
             Ocean Luxe Estates connects you to curated residential, commercial, and multi-family opportunities across Rhode Island, Massachusetts, Florida, and Michigan.
