@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, Globe, Phone, Mail, Instagram, Linkedin, ArrowRight, Building2, TrendingUp, Home, CheckCircle2 } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 import AiImage from './components/AiImage';
 import PropertyCard from './components/PropertyCard';
 import Concierge from './components/Concierge';
@@ -55,6 +56,8 @@ function App() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactMessage, setContactMessage] = useState('');
+  const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [formState, handleContactSubmit] = useForm('xzdojlap');
 
   const filteredProperties = activeTab === 'All' 
     ? FEATURED_PROPERTIES 
@@ -73,9 +76,17 @@ function App() {
 
   const openContact = (prefill?: string) => {
     setMobileMenuOpen(false);
+    setContactSubmitted(false);
     setContactMessage(prefill ?? '');
     setContactOpen(true);
   };
+
+  useEffect(() => {
+    if (formState.succeeded) {
+      setContactSubmitted(true);
+      setContactMessage('');
+    }
+  }, [formState.succeeded]);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-brand-gold selection:text-black pb-24 md:pb-0">
@@ -163,7 +174,7 @@ function App() {
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-gold/50 to-white">&amp; Investment-Grade Real Estate</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            Ocean Luxe Estates connects you to curated residential, commercial, and multi-family opportunities across Rhode Island, Massachusetts, Florida, and Michigan.
+            Ocean Luxe Estates connects you to curated residential, commercial, and multi-family opportunities, including off-market property leads and investment property research across Rhode Island, Massachusetts, Florida, and Michigan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
             <button onClick={() => navigateTo('buy')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
@@ -318,7 +329,7 @@ function App() {
                 Serious analysis for <br /> serious investors.
               </h2>
               <p className="text-gray-400 mb-8 leading-relaxed max-w-xl">
-                Identify high-quality opportunities across multi-family, mixed-use, and select commercial assets. Move with confidence—backed by underwriting support and disciplined execution.
+                Identify high-quality opportunities across multi-family, mixed-use, and select commercial assets. Move with confidence using real estate investor tools, property data analysis, and deal-analyzer discipline.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button onClick={() => openContact('I’d like to discuss investment opportunities (multi-family, commercial, or portfolio strategy).')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all">
@@ -625,27 +636,34 @@ function App() {
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
           <div className="bg-black border border-white/10 max-w-lg w-full mx-4 rounded-sm p-6">
             <h3 className="text-2xl font-serif text-white mb-4">Start a Conversation</h3>
+            {contactSubmitted && (
+              <div className="mb-4 rounded-sm border border-green-500/40 bg-green-500/10 p-3 text-sm text-green-200">
+                Thanks. Your message has been sent and our team will follow up soon.
+              </div>
+            )}
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.target as HTMLFormElement;
-                const data = new FormData(form);
-                form.reset();
-                setContactMessage('');
-                setContactOpen(false);
-              }}
+              onSubmit={handleContactSubmit}
               className="space-y-4"
             >
+              <input type="hidden" name="_subject" value="Ocean Luxe Website Lead" />
+              <input type="hidden" name="source" value="website_modal_contact" />
               <input name="name" required placeholder="Full Name" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
               <input name="email" required type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <ValidationError prefix="Email" field="email" errors={formState.errors} className="text-sm text-red-300" />
               <input name="phone" placeholder="Phone" className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
               <textarea value={contactMessage} onChange={(e) => setContactMessage(e.target.value)} name="message" required placeholder="Tell us what you're looking for" rows={4} className="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white" />
+              <ValidationError prefix="Message" field="message" errors={formState.errors} className="text-sm text-red-300" />
+              <ValidationError errors={formState.errors} className="text-sm text-red-300" />
               <div className="flex justify-end gap-3">
                 <button type="button" onClick={() => setContactOpen(false)} className="border border-white text-white px-4 py-2 rounded-sm">
                   Cancel
                 </button>
-                <button type="submit" className="bg-brand-gold text-black px-4 py-2 rounded-sm font-bold uppercase">
-                  Send
+                <button
+                  type="submit"
+                  disabled={formState.submitting}
+                  className="bg-brand-gold text-black px-4 py-2 rounded-sm font-bold uppercase disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {formState.submitting ? 'Sending...' : 'Send'}
                 </button>
               </div>
             </form>
