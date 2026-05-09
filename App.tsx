@@ -122,6 +122,7 @@ function App() {
               <button onClick={() => navigateTo('buy')} className="text-sm font-medium hover:text-brand-gold transition-colors">Buy</button>
               <button onClick={() => navigateTo('invest')} className="text-sm font-medium hover:text-brand-gold transition-colors">Invest</button>
               <button onClick={() => navigateTo('sell')} className="text-sm font-medium hover:text-brand-gold transition-colors">Sell</button>
+              <button onClick={() => navigateTo('notary')} className="text-sm font-medium hover:text-brand-gold transition-colors">Notary</button>
               <button onClick={() => navigateTo('markets')} className="text-sm font-medium hover:text-brand-gold transition-colors">Markets</button>
               <button onClick={() => navigateTo('about')} className="text-sm font-medium hover:text-brand-gold transition-colors">About</button>
               <button onClick={() => openContact()} className="text-sm font-medium hover:text-brand-gold transition-colors">Contact</button>
@@ -146,6 +147,7 @@ function App() {
              <button className="text-lg font-medium text-left" onClick={() => navigateTo('buy')}>Buy</button>
              <button className="text-lg font-medium text-left" onClick={() => navigateTo('invest')}>Invest</button>
              <button className="text-lg font-medium text-left" onClick={() => navigateTo('sell')}>Sell</button>
+             <button className="text-lg font-medium text-left" onClick={() => navigateTo('notary')}>Notary</button>
              <button className="text-lg font-medium text-left" onClick={() => navigateTo('markets')}>Markets</button>
              <button className="text-lg font-medium text-left" onClick={() => navigateTo('about')}>About</button>
              <button className="text-lg font-medium text-left" onClick={() => openContact()}>Contact</button>
@@ -391,6 +393,74 @@ function App() {
         </div>
       </section>
 
+      <section id="notary" className="py-24 bg-brand-darkgray border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="h-px w-10 bg-brand-gold"></div>
+              <span className="text-brand-gold uppercase tracking-widest text-sm font-bold">Ocean Luxe Notary</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
+              Certified Rhode Island notary support <br /> with concierge-level execution.
+            </h2>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              We provide in-person and mobile notarization across Rhode Island, plus remote online notarization for clients in nearby Massachusetts and Connecticut.
+            </p>
+            <ul className="space-y-3 text-sm text-gray-300">
+              <li className="flex items-start"><CheckCircle2 className="w-4 h-4 mt-0.5 mr-2 text-brand-gold" />Commissioned in Rhode Island for in-state notarial acts.</li>
+              <li className="flex items-start"><CheckCircle2 className="w-4 h-4 mt-0.5 mr-2 text-brand-gold" />MA/CT clients can be served through Remote Online Notarization (RON).</li>
+              <li className="flex items-start"><CheckCircle2 className="w-4 h-4 mt-0.5 mr-2 text-brand-gold" />Final pricing is confirmed before appointment based on service details.</li>
+            </ul>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: 'Basic In-Person Notarization', price: 'Starts at $25 per notarial act' },
+              { name: 'Mobile Notary (Local Daytime)', price: 'Starts at $65 total' },
+              { name: 'After-Hours / Rush Mobile', price: 'Starts at $95 total' },
+              { name: 'Real Estate Loan Signing', price: 'Starts at $150' },
+              { name: 'Hospital / Jail Visits', price: 'Starts at $125' },
+              { name: 'Remote Online Notarization', price: 'Starts at $25 per act' }
+            ].map((service) => (
+              <div key={service.name} className="bg-black border border-white/10 p-6 hover:border-brand-gold/50 transition-colors">
+                <h3 className="text-xl font-serif text-white mb-2">{service.name}</h3>
+                <p className="text-brand-gold font-semibold mb-4">{service.price}</p>
+                <p className="text-sm text-gray-400">
+                  Travel fee add-on starts at $15 and may increase by distance, timing, and service complexity.
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-sm border border-white/10 bg-black p-5 text-sm text-gray-300 leading-relaxed">
+            Rhode Island fee guidance applies to the notarial act itself, including remote acts. Travel, after-hours, and specialty service charges are disclosed in advance. This information is general service pricing guidance and not legal advice.
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() =>
+                openContact(
+                  'Notary Request:\nService Type: \nCity/State: \nPreferred Date/Time: \nDocument Type: \nNumber of Signers: \nIn-Person (RI) or RON (MA/CT): '
+                )
+              }
+              className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all"
+            >
+              Book Notary Service
+            </button>
+            <button
+              onClick={() =>
+                openContact(
+                  'Notary Pricing Request:\nService Needed: \nLocation: \nTiming (Standard or Rush): \nDocument Count: '
+                )
+              }
+              className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all"
+            >
+              Get Pricing Confirmation
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section id="how-it-works" className="py-24 bg-brand-darkgray border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -538,6 +608,7 @@ function App() {
                 <li><button onClick={() => navigateTo('buy')} className="hover:text-brand-gold transition-colors">Buy</button></li>
                 <li><button onClick={() => navigateTo('invest')} className="hover:text-brand-gold transition-colors">Invest</button></li>
                 <li><button onClick={() => navigateTo('sell')} className="hover:text-brand-gold transition-colors">Sell</button></li>
+                <li><button onClick={() => navigateTo('notary')} className="hover:text-brand-gold transition-colors">Notary</button></li>
                 <li><button onClick={() => navigateTo('markets')} className="hover:text-brand-gold transition-colors">Markets</button></li>
                 <li><button onClick={() => navigateTo('about')} className="hover:text-brand-gold transition-colors">About</button></li>
                 <li><button onClick={() => openContact()} className="hover:text-brand-gold transition-colors">Contact</button></li>
