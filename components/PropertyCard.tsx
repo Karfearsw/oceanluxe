@@ -20,6 +20,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onInquire, fallba
           prompt={property.imagePrompt} 
           alt={property.title} 
           className="w-full h-full group-hover:scale-105 transition-transform duration-700"
+          src={property.staticImage}
           fallbackSrc={fallbackSrc}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60"></div>

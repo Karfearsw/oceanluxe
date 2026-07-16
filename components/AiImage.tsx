@@ -7,17 +7,26 @@ interface AiImageProps {
   alt: string;
   className?: string;
   fallbackSrc?: string;
-  aspectRatio?: string; // Optional aspect ratio control for future use
+  aspectRatio?: string;
+  src?: string;
 }
 
-const AiImage: React.FC<AiImageProps> = ({ prompt, alt, className = "", fallbackSrc }) => {
+const AiImage: React.FC<AiImageProps> = ({ prompt, alt, className = "", fallbackSrc, src }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
+  if (src) {
+    return (
+      <img 
+        src={src} 
+        alt={alt} 
+        className={`object-cover ${className}`} 
+      />
+    );
+  }
+
   useEffect(() => {
-    // Disabled AI generation for now to prevent black screen on Vercel
-    // when API key is missing. Always use fallback.
     setLoading(false);
     setError(true);
   }, [prompt]);

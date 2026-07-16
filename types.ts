@@ -7,6 +7,7 @@ export interface Property {
   description: string;
   imagePrompt: string;
   type: 'Residential' | 'Commercial' | 'Investment';
+  staticImage?: string;
 }
 
 export interface Message {

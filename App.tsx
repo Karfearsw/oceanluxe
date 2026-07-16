@@ -16,7 +16,8 @@ const FEATURED_PROPERTIES: Property[] = [
     specs: '4 Beds | 5.5 Baths | 4,200 sqft',
     description: 'Ultra-luxury oceanfront penthouse with panoramic views, private elevator, and wraparound terrace.',
     imagePrompt: 'ultra modern luxury penthouse living room overlooking miami ocean sunset, floor to ceiling windows, white marble floors, sleek black furniture, gold accents',
-    type: 'Residential'
+    type: 'Residential',
+    staticImage: '/Webimages/property-1.jpg'
   },
   {
     id: '2',
@@ -26,7 +27,8 @@ const FEATURED_PROPERTIES: Property[] = [
     specs: '5 Beds | 4 Baths | 3,800 sqft',
     description: 'Historically significant brownstone renovated with modern amenities while preserving original architectural charm.',
     imagePrompt: 'historic boston brownstone exterior street view, luxury entrance, gas lantern, sunset, autumn leaves, red brick, elegant, warm lighting',
-    type: 'Residential'
+    type: 'Residential',
+    staticImage: '/Webimages/property-2.jpg'
   },
   {
     id: '3',
@@ -36,7 +38,8 @@ const FEATURED_PROPERTIES: Property[] = [
     specs: '15,000 sqft | Class A Office',
     description: 'Modern industrial office space in the heart of Detroit, perfect for scaling tech startups.',
     imagePrompt: 'modern industrial office lobby detroit, exposed brick, glass walls, concrete floors, gold accent furniture, high tech lighting',
-    type: 'Commercial'
+    type: 'Commercial',
+    staticImage: '/Webimages/property-3.jpg'
   },
   {
     id: '4',
@@ -46,7 +49,8 @@ const FEATURED_PROPERTIES: Property[] = [
     specs: '9 Beds | 11 Baths | 12,500 sqft',
     description: 'Gilded Age inspired estate on the Cliff Walk with direct ocean access and expansive manicured gardens.',
     imagePrompt: 'grand luxury estate mansion newport rhode island cliff walk ocean view, manicured gardens, sunset, architectural masterpiece, cinematic, golden hour',
-    type: 'Investment'
+    type: 'Investment',
+    staticImage: '/Webimages/property-4.jpg'
   }
 ];
 
@@ -160,9 +164,9 @@ function App() {
       <section id="home" className="relative min-h-screen w-full flex items-center justify-center pt-28 md:pt-24 pb-16">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/logo.png"
+            src="/Webimages/hero.jpg"
             alt="Hero Background"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/55"></div>
         </div>
@@ -263,7 +267,7 @@ function App() {
                 prompt="modern sleek skyscraper architecture detail black and gold, upward angle, cinematic, luxury" 
                 alt="Architecture" 
                 className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                fallbackSrc="/logo.png"
+                src="/Webimages/about-architecture.jpg"
               />
             </div>
           </div>
@@ -305,7 +309,6 @@ function App() {
                 key={property.id} 
                 property={property} 
                 onInquire={(p) => setSelectedProperty(p)} 
-                fallbackSrc={new URL('./download (7).png', import.meta.url).href}
               />
             ))}
           </div>
@@ -349,7 +352,7 @@ function App() {
                 prompt="luxury real estate investment meeting, modern boardroom, skyline at dusk, black and gold color palette, cinematic lighting, high-end editorial"
                 alt="Investment"
                 className="w-full h-[520px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                fallbackSrc="/logo.png"
+                src="/Webimages/invest-boardroom.jpg"
               />
             </div>
           </div>
@@ -366,7 +369,7 @@ function App() {
                 prompt="luxury home exterior at golden hour, editorial real estate photography, coastal modern architecture, black and gold accents, cinematic"
                 alt="Sell"
                 className="w-full h-[520px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                fallbackSrc="/logo.png"
+                src="/Webimages/sell-exterior.jpg"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -532,8 +535,16 @@ function App() {
         </div>
       </section>
 
-      <section id="trust" className="py-24 bg-brand-darkgray border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="trust" className="py-24 relative border-t border-white/5">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/Webimages/testimonial-lifestyle.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-brand-darkgray/90"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-bold mb-4">Trust & Results</h2>
             <div className="w-24 h-1 bg-brand-gold mx-auto"></div>
@@ -557,6 +568,11 @@ function App() {
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-gold">
+           <img 
+             src="/Webimages/property-detail.jpg" 
+             alt="" 
+             className="absolute inset-0 w-full h-full object-cover opacity-30"
+           />
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
            <div className="absolute inset-0 bg-gradient-to-r from-black via-brand-gold/80 to-black opacity-90"></div>
         </div>
@@ -672,7 +688,7 @@ function App() {
                 prompt={selectedProperty.imagePrompt}
                 alt={selectedProperty.title}
                 className="w-full h-full object-cover"
-                fallbackSrc={new URL('./download (7).png', import.meta.url).href}
+                src={selectedProperty.staticImage}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
             </div>
