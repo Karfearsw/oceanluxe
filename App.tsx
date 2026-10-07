@@ -4,6 +4,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import AiImage from './components/AiImage';
 import PropertyCard from './components/PropertyCard';
 import Concierge from './components/Concierge';
+import { KeyIcon, NotarySealIcon, CrownIcon, WaveIcon, HandshakeIcon } from './components/icons';
 import { Property } from './types';
 
 // Constants
@@ -173,22 +174,138 @@ function App() {
 
         <div className="relative z-10 text-center max-w-4xl px-4">
           <p className="text-brand-gold uppercase tracking-[0.2em] text-xs md:text-sm font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Coastal Luxury • Investment-Grade Real Estate
+            Fast cash offers &nbsp;·&nbsp; In-house notary &nbsp;·&nbsp; Luxury standard
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white leading-[1.1] max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
-            <span className="block">Coastal Luxury</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-gold/50 to-white">&amp; Investment-Grade Real Estate</span>
+            <span className="block">Sell your house in days,</span>
+            <span className="block">not months.</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            Ocean Luxe Estates connects you to curated residential, commercial, and multi-family opportunities, including off-market property leads and investment property research across Rhode Island, Massachusetts, Florida, and Michigan.
+            We buy houses as-is for cash and close in as little as 7 days. Our in-house
+            notary handles every signature, and every deal gets the same white-glove
+            standard — from a $50k cash purchase to a $5M listing. Serving Massachusetts,
+            Rhode Island, Florida, and Michigan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
-            <button onClick={() => navigateTo('buy')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-              Browse Properties
+            <button onClick={() => openContact('I’d like a cash offer on my property. Here are the details:')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+              Get My Cash Offer
             </button>
             <button onClick={() => openContact('I’d like to talk to an advisor about buying, selling, or investing.')} className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
               Talk to an Advisor
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* What we do — three pillars */}
+      <section id="what-we-do" className="py-24 md:py-32 bg-black border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-16">
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="h-px w-10 bg-brand-gold"></div>
+              <span className="text-brand-gold uppercase tracking-widest text-sm font-bold">What we do</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight">
+              Three services.<br />One standard.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 items-start">
+            <div className="bg-brand-darkgray border border-white/10 p-10 hover:border-brand-gold/50 transition-colors">
+              <KeyIcon className="w-14 h-14 text-brand-gold mb-8" />
+              <h3 className="text-2xl font-serif font-bold mb-4">We buy houses, fast.</h3>
+              <p className="text-gray-400 leading-relaxed mb-4">
+                As-is means as-is. No repairs, no showings, no waiting on a buyer&rsquo;s
+                mortgage approval.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                You get a fair cash offer and we can close in as little as 7 days.
+                Inherited it, outgrew it, behind on it — we&rsquo;ll take it from here.
+              </p>
+            </div>
+            <div className="bg-brand-darkgray border border-white/10 p-10 hover:border-brand-gold/50 transition-colors md:mt-12">
+              <NotarySealIcon className="w-14 h-14 text-brand-gold mb-8" />
+              <h3 className="text-2xl font-serif font-bold mb-4">Paperwork, handled.</h3>
+              <p className="text-gray-400 leading-relaxed mb-4">
+                Our in-house notary keeps every document clean and legal — mobile
+                notary across Rhode Island, remote online notarization for
+                Massachusetts and Connecticut clients.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                Nothing stalls at the signing table. Not on our deals, not on yours.
+              </p>
+            </div>
+            <div className="bg-brand-darkgray border border-white/10 p-10 hover:border-brand-gold/50 transition-colors">
+              <CrownIcon className="w-14 h-14 text-brand-gold mb-8" />
+              <h3 className="text-2xl font-serif font-bold mb-4">Luxury is the standard.</h3>
+              <p className="text-gray-400 leading-relaxed mb-4">
+                A $50,000 cash deal gets the same white-glove treatment as a
+                $5,000,000 listing. Same responsiveness, same polish, same respect.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                That&rsquo;s the whole point of the name.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our story */}
+      <section id="story" className="py-24 md:py-32 bg-brand-darkgray border-t border-white/5 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-7">
+              <div className="flex items-center space-x-2 mb-6">
+                <div className="h-px w-10 bg-brand-gold"></div>
+                <span className="text-brand-gold uppercase tracking-widest text-sm font-bold">Our story</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">
+                Built deal by deal.
+              </h2>
+              <div className="space-y-6 text-lg text-gray-300 font-light leading-relaxed max-w-2xl">
+                <p>
+                  Ocean Luxe started the way most honest businesses do — with no money
+                  and no shortcuts. Just a belief that a homeowner with a problem
+                  property deserves the same respect as a buyer with a seven-figure budget.
+                </p>
+                <p>
+                  So we built the company we wished existed: one that can make a fair
+                  cash offer in days, notarize the paperwork itself, and treat every
+                  single client like they&rsquo;re our only client.
+                </p>
+                <p>
+                  We&rsquo;re still bootstrapped. We still answer our own phones. And we
+                  still believe hustle plus integrity beats pedigree, every time.
+                </p>
+              </div>
+            </div>
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="border border-white/10 bg-black p-10">
+                <WaveIcon className="w-12 h-12 text-brand-gold mb-8" />
+                <blockquote className="text-2xl font-serif text-white leading-snug mb-8">
+                  &ldquo;Treat the $50k cash deal like the $5M listing, and you&rsquo;ll
+                  never have to chase business.&rdquo;
+                </blockquote>
+                <div className="h-px w-12 bg-brand-gold mb-4"></div>
+                <p className="text-sm uppercase tracking-widest text-gray-400">The rule we run on</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Structural strip — honest by design, no invented metrics */}
+          <div className="mt-20 grid grid-cols-3 gap-6 border-t border-white/10 pt-10">
+            <div>
+              <p className="text-4xl md:text-5xl font-serif text-brand-gold mb-2">04</p>
+              <p className="text-sm uppercase tracking-widest text-gray-400">States we buy in</p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-serif text-brand-gold mb-2">03</p>
+              <p className="text-sm uppercase tracking-widest text-gray-400">Things we do — buy, notarize, list</p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-serif text-brand-gold mb-2">01</p>
+              <p className="text-sm uppercase tracking-widest text-gray-400">Standard: luxury, on every deal</p>
+            </div>
           </div>
         </div>
       </section>
@@ -281,7 +398,7 @@ function App() {
             <div>
               <h2 className="text-4xl font-serif font-bold mb-4">Browse <span className="text-brand-gold">Properties</span></h2>
               <p className="text-gray-400 max-w-xl">
-                Curated listings across residential, commercial, and investment assets.
+                Curated listings across residential, commercial, and investment assets — plus off-market opportunities from our own buying pipeline.
               </p>
             </div>
             
@@ -334,7 +451,7 @@ function App() {
                 Serious analysis for <br /> serious investors.
               </h2>
               <p className="text-gray-400 mb-8 leading-relaxed max-w-xl">
-                Identify high-quality opportunities across multi-family, mixed-use, and select commercial assets. Move with confidence using real estate investor tools, property data analysis, and deal-analyzer discipline.
+                Identify high-quality opportunities across multi-family, mixed-use, and select commercial assets. That includes off-market cash deals and assignments from our own buying pipeline — the same deals we underwrite for ourselves. Move with confidence using real investor tools, property data analysis, and deal-analyzer discipline.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button onClick={() => openContact('I’d like to discuss investment opportunities (multi-family, commercial, or portfolio strategy).')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all">
@@ -377,18 +494,37 @@ function App() {
                 <div className="h-px w-10 bg-brand-gold"></div>
                 <span className="text-brand-gold uppercase tracking-widest text-sm font-bold">Sell</span>
               </div>
+              <HandshakeIcon className="w-12 h-12 text-brand-gold mb-6" />
               <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
-                Marketed like a brand. <br /> Negotiated like an asset.
+                Skip the listing. <br /> Take the cash.
               </h2>
-              <p className="text-gray-400 mb-8 leading-relaxed max-w-xl">
-                Pricing strategy, premium presentation, targeted outreach, and clean process management—built to protect value and reduce friction from listing to close.
+              <p className="text-gray-400 mb-6 leading-relaxed max-w-xl">
+                No repairs. No open houses. No six months of &ldquo;maybe.&rdquo; Tell us about
+                the property, get a fair as-is cash offer, and close in as little as
+                7 days — with our own notary handling the paperwork.
               </p>
+              <p className="text-gray-400 mb-8 leading-relaxed max-w-xl">
+                And if listing will honestly net you more, we&rsquo;ll tell you that
+                instead. We&rsquo;d rather lose a deal than earn one dishonestly.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {[
+                  'As-is purchase — the repairs become our problem, not yours',
+                  'Close in as little as 7 days',
+                  'Our in-house notary seals the deal'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center text-white">
+                    <CheckCircle2 className="w-5 h-5 text-brand-gold mr-3" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={() => openContact('I’d like to sell a property. Please share next steps for pricing and marketing.')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all">
-                  Request a Valuation
+                <button onClick={() => openContact('I’d like a cash offer on my property. Here are the details:')} className="bg-brand-gold text-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white transition-all">
+                  Get My Cash Offer
                 </button>
-                <button onClick={() => openContact('I’d like to discuss listing strategy and timelines.')} className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
-                  Listing Strategy
+                <button onClick={() => openContact('I’d like to discuss whether selling as-is or listing is better for my property.')} className="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
+                  Talk Strategy
                 </button>
               </div>
             </div>
@@ -603,7 +739,7 @@ function App() {
                 OCEAN LUXE <span className="text-brand-gold">ESTATES</span>
               </h3>
               <p className="text-gray-400 mb-6 max-w-sm">
-                Luxury and investment-grade real estate across Rhode Island, Massachusetts, Florida, and Michigan.
+                We buy houses for cash, notarize the paperwork, and list luxury — across Rhode Island, Massachusetts, Florida, and Michigan.
               </p>
               <div className="flex space-x-4">
                 <a href="mailto:info@oceanluxe.org" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-black transition-colors" aria-label="Email Ocean Luxe Estates">
