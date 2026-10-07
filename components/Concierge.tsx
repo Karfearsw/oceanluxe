@@ -317,7 +317,7 @@ const Concierge: React.FC = () => {
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="absolute right-2 p-2 bg-brand-gold rounded-full text-black disabled:opacity-50 disabled:cursor-not-allowed hover:bg-yellow-600 transition-colors"
+                className="absolute right-2 p-2 bg-brand-gold rounded-full text-black disabled:opacity-50 disabled:cursor-not-allowed hover:brightness-110 transition-colors"
               >
                 <Send className="w-4 h-4" />
               </button>

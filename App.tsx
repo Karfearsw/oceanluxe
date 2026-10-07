@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, Globe, Phone, Mail, Instagram, Linkedin, ArrowRight, Building2, TrendingUp, Home, CheckCircle2 } from 'lucide-react';
+import { Menu, X, Globe, Phone, Mail, ArrowRight, Building2, TrendingUp, Home, CheckCircle2 } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import AiImage from './components/AiImage';
 import PropertyCard from './components/PropertyCard';
@@ -606,13 +606,7 @@ function App() {
                 Luxury and investment-grade real estate across Rhode Island, Massachusetts, Florida, and Michigan.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-black transition-colors">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-black transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-black transition-colors">
+                <a href="mailto:info@oceanluxe.org" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-black transition-colors" aria-label="Email Ocean Luxe Estates">
                   <Mail className="w-5 h-5" />
                 </a>
               </div>
